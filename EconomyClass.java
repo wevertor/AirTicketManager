@@ -1,15 +1,12 @@
 import java.util.*;
 
 public class EconomyClass extends Class{
-    int[][] sitMap(){
-        int[][] sits = new int[15][];
+
+    EconomyClass(){
+        sitMap = new int[15][];
         for(int i=0; i<15; i++){
-            sits[i] = new int[6];
-            for( int j=0; j<6; j++){
-                sits[i][j] = 0;
-            }
+            sitMap[i] = new int[6];
         }
-        return sits;
     }
 
     /* if sitIsEmpty == true, then add Passenger in hashmap */

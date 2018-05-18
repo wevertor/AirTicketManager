@@ -2,15 +2,11 @@ import java.util.*;
 
 public class FirstClass extends Class{
 
-    int[][] sitMap(){
-        int[][] sits = new int[5][];
+    FirstClass(){
+        sitMap = new int[5][];
         for(int i = 0; i<5; i++){
-            sits[i] = new int[6];
-            for( int j=0; j<6; j++){
-                sits[i][j] = 0;
-            }
+            sitMap[i] = new int[6];
         }
-        return sits;
     }
 
     /* if sitIsEmpty == true, then add Passenger in hashmap */
@@ -22,4 +18,5 @@ public class FirstClass extends Class{
         }
         return false;
     }
+
 }

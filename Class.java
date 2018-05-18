@@ -1,6 +1,9 @@
 import java.util.*;
 
 public class Class {
+    int x, y;
+    int [][] sitMap;
+
     private HashMap<String, Passenger> passengers = new HashMap<String, Passenger>();
 
     int getY(String ref){

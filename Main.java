@@ -8,6 +8,10 @@ class Main {
         Passenger cliente;
         String nome, sit;
         boolean flag;
+
+        FirstClass fClass = new FirstClass();
+        EconomyClass eClass = new EconomyClass();
+
         do{
             System.out.print("Insira os dados do passageiro.\n Nome: ");
             nome = input.next();
@@ -20,37 +24,38 @@ class Main {
             opt = input.nextInt();
 
             if(opt==1){
-                FirstClass classe = new FirstClass();
-                sitmap = classe.sitMap();
                 do{
+
                     System.out.println("Em qual poltrona deseja sentar?");
                     sit = input.next();
-                    x = classe.getX(sit);
+                    x = fClass.getX(sit);
                     //System.out.println(x);
-                    y = classe.getY(sit);
+                    y = fClass.getY(sit);
                     //System.out.println(y);
+
                     /* verify if "sit" is a valid sit and if it's empty */
-                    flag = classe.sitIsEmpty(sitmap, x, y);
+                    flag = fClass.sitIsEmpty(fClass.sitMap, x, y);
+
                     //System.out.println(flag);
                     if(flag == false) System.out.println("Assento ocupado ou inexistente.");
+
                 }while(flag != true);
-                sitmap[x][y] = 1;
-                classe.addPassenger(sit, cliente);
-            }
-            else if(opt == 2){
-               EconomyClass classe = new EconomyClass();
-                sitmap = classe.sitMap();
+                fClass.sitMap[x][y] = 1;
+                fClass.addPassenger(sit, cliente);
+                System.out.println("Passageiro adicionado com sucesso!");
+            }else if(opt == 2){
+
                 do{
                     System.out.println("Em qual poltrona deseja sentar?");
                     sit = input.next();
-                    x = classe.getX(sit);
-                    y = classe.getY(sit);
+                    x = eClass.getX(sit);
+                    y = eClass.getY(sit);
                     /* verify if "sit" is a valid sit and if it's empty */
-                    flag = classe.sitIsEmpty(sitmap, x, y);
+                    flag = eClass.sitIsEmpty(eClass.sitMap, x, y);
                     if(flag == false) System.out.println("Assento ocupado ou inexistente.");
                 }while(flag == true);
-                sitmap[x][y] = 1;
-                classe.addPassenger(sit, cliente);
+                eClass.sitMap[x][y] = 1;
+                eClass.addPassenger(sit, cliente);
                 System.out.println("Passageiro adicionado com sucesso!");
             }
             System.out.println("Deseja adicionar outro passageiro?\n 1 - Sim.\n 2 - Não.");
