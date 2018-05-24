@@ -51,7 +51,7 @@ class Main {
                     x = eClass.getX(sit);
                     y = eClass.getY(sit);
                     /* verify if "sit" is a valid sit and if it's empty */
-                    flag = eClass.sitIsEmpty(eClass.sitMap, x, y);
+                    flag = eClass.sitIsEmpty(/*eClass.sitMap*/ x, y);
                     if(flag == false) System.out.println("Assento ocupado ou inexistente.");
                 }while(flag == true);
                 eClass.sitMap[x][y] = 1;

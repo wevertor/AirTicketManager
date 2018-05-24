@@ -1,8 +1,7 @@
 import java.util.*;
 
 public class Class {
-    int x, y;
-    int [][] sitMap;
+    protected int [][] sitMap;
 
     private HashMap<String, Passenger> passengers = new HashMap<String, Passenger>();
 
