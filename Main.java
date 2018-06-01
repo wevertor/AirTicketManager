@@ -12,8 +12,8 @@ class Main {
         boolean flag;
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        FirstClass fClass = new FirstClass();
-        EconomyClass eClass = new EconomyClass();
+        FirstClass fClass /*= new FirstClass()*/;
+        EconomyClass eClass /*= new EconomyClass()*/;
 
         Fly teresina = new Fly("GOL", formatter.format(date), "14:45", "1", "A", "São Luís", "Teresina");
         Fly saopaulo = new Fly("TAM", formatter.format(date), "17:30", "2", "E", "São Luís", "São Paulo");
@@ -34,6 +34,9 @@ class Main {
             else if (sair == 2) {
                 fClass = saopaulo.getFirstClass();
                 eClass = saopaulo.getEconomyClass();
+            }
+            else{
+                break;
             }
 
             do{
