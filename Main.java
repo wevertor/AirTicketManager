@@ -12,8 +12,8 @@ class Main {
         boolean flag;
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        FirstClass fClass /*= new FirstClass()*/;
-        EconomyClass eClass /*= new EconomyClass()*/;
+        FirstClass fClass = new FirstClass();
+        EconomyClass eClass = new EconomyClass();
 
         Fly teresina = new Fly("GOL", formatter.format(date), "14:45", "1", "A", "São Luís", "Teresina");
         Fly saopaulo = new Fly("TAM", formatter.format(date), "17:30", "2", "E", "São Luís", "São Paulo");
@@ -25,6 +25,7 @@ class Main {
             System.out.println("1\t|GOL\t\t|" + formatter.format(date) + "\t|14:45\t|A\t|Teresina");
             System.out.println("2\t|TAM\t\t|" + formatter.format(date) + "\t|17:30\t|E\t|São Paulo");
             sair = input.nextInt();
+
             if (sair == 1) {
                 fClass = teresina.getFirstClass();
                 eClass = teresina.getEconomyClass();
@@ -33,7 +34,6 @@ class Main {
             else if (sair == 2) {
                 fClass = saopaulo.getFirstClass();
                 eClass = saopaulo.getEconomyClass();
-
             }
 
             do{
