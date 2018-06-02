@@ -53,5 +53,6 @@ public class Class {
 
     Passenger getPassenger(String key){
         return this.passengers.get(key);
-    }
+    }       
+    
 }
