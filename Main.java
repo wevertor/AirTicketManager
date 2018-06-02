@@ -25,6 +25,7 @@ class Main {
             System.out.println("1\t|GOL\t\t|" + formatter.format(date) + "\t|14:45\t|A\t|Teresina");
             System.out.println("2\t|TAM\t\t|" + formatter.format(date) + "\t|17:30\t|E\t|São Paulo");
             sair = input.nextInt();
+
             if (sair == 1) {
                 fClass = teresina.getFirstClass();
                 eClass = teresina.getEconomyClass();
@@ -33,7 +34,9 @@ class Main {
             else if (sair == 2) {
                 fClass = saopaulo.getFirstClass();
                 eClass = saopaulo.getEconomyClass();
-
+            }
+            else{
+                break;
             }
 
             do{
