@@ -21,7 +21,7 @@ public class FirstClass extends Class{
 
     void print(){
         System.out.println("|First Class|");
-        System.out.println("  A B C D E F"); 
+        System.out.println("  A B C D E F");
         for(int i = 0; i<5; i++){
             System.out.printf("%d ", i+1);
             for(int j = 0 ; j<6 ; j++){
@@ -29,5 +29,6 @@ public class FirstClass extends Class{
             }
             System.out.printf("\n");
         }
+        System.out.printf("\n");
     }
 }

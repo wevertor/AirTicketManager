@@ -1,106 +1,196 @@
 import java.util.*;
 import java.text.SimpleDateFormat;
-
-
+//
+//
 class Main {
+    static Scanner input = new Scanner(System.in);
+    static Date date = new Date();
+    static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+    static boolean chooseSit(Fly flight , Passenger passenger){
+
+        System.out.println("\nOnde o passageiro deseja viajar?\n1 - Primeira Classe.\n2 - Classe Econômica.");
+        int opt = input.nextInt();
+        int x , y;
+        String sit;
+
+        if(opt==1){
+
+            FirstClass fClass = flight.getFirstClass();
+
+            do{
+
+                System.out.println("Em qual poltrona deseja sentar?\n");
+                fClass.print();
+
+                sit = input.next();
+                x = fClass.getX(sit);
+                y = fClass.getY(sit);
+
+                /* verify if "sit" is a valid sit and if it's empty */
+                boolean flag = fClass.sitIsEmpty(x, y);
+
+                if(flag) break;
+
+                System.out.println("Assento ocupado ou inexistente.");
+
+            }while(true);
+
+            passenger.setSit(sit);
+            passenger.setClasse(fClass);
+            fClass.addPassenger(passenger);
+            System.out.println("Passageiro adicionado com sucesso!");
+            return true;
+
+        }else if(opt == 2){
+
+            EconomyClass eClass = flight.getEconomyClass();
+
+            do{
+
+                System.out.println("Em qual poltrona deseja sentar?\n");
+                eClass.print();
+
+                System.out.println();
+                sit = input.next();
+                x = eClass.getX(sit);
+                y = eClass.getY(sit);
+
+                /* verify if "sit" is a valid sit and if it's empty */
+                boolean flag = eClass.sitIsEmpty(x, y);
+
+                if(flag) break;
+
+                System.out.println("Assento ocupado ou inexistente.");
+
+            }while(true);
+
+            eClass.sitMap[x][y] = 1;
+            passenger.setSit(sit);
+            eClass.addPassenger(passenger);
+            System.out.println("Passageiro adicionado com sucesso!");
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
+        int opt;
         Scanner input = new Scanner(System.in);
-        long id, credit;
-        int opt, x, y, parar, sair;
-        Passenger cliente;
-        String nome, sit;
-        boolean flag;
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        FirstClass fClass /*= new FirstClass()*/;
-        EconomyClass eClass /*= new EconomyClass()*/;
 
         Fly teresina = new Fly("GOL", formatter.format(date), "14:45", "1", "A", "São Luís", "Teresina", 450.00);
         Fly saopaulo = new Fly("LATAM", formatter.format(date), "17:30", "2", "E", "São Luís", "São Paulo" , 450.00);
         Fly londres = new Fly("AZUL", formatter.format(date), "04:30", "3", "D", "São Luís", "Londres", 450.00);
 
-        do{
+        ArrayList<Fly> flights = new ArrayList<Fly>();
+        flights.add(teresina);
+        flights.add(saopaulo);
+        flights.add(londres);
+
+        do {
+
             System.out.println("Escolha um dos voos para cadastrar um passageiro: (Insira 0 para sair)");
             System.out.println("Voos disponíveis hoje:");
             System.out.println("Fly\t|Company\t|Date\t\t|Hour\t|Gate\t|To");
             System.out.println("1\t|GOL\t\t|" + formatter.format(date) + "\t|14:45\t|A\t|Teresina");
             System.out.println("2\t|LATAM\t\t|" + formatter.format(date) + "\t|17:30\t|E\t|São Paulo");
             System.out.println("3\t|AZUL\t\t|" + formatter.format(date) + "\t|04:30\t|D\t|Londres");
-            sair = input.nextInt();
 
-            if (sair == 1) {
-                fClass = teresina.getFirstClass();
-                eClass = teresina.getEconomyClass();
+            opt = input.nextInt();
 
-            }
-            else if (sair == 2) {
-                fClass = saopaulo.getFirstClass();
-                eClass = saopaulo.getEconomyClass();
-            }
-            else if (sair == 3) {
-                fClass = londres.getFirstClass();
-                eClass = londres.getEconomyClass();
-            }
-            else{
-                System.out.println("Entrada Inválida.");
+            if(opt == 0){
                 break;
             }
+            else if(opt>0 && opt<=flights.size()){
+                opt--;
+                Fly flight = flights.get(opt);
 
-            do{
-                System.out.print("Insira os dados do passageiro.\n Nome: ");
-                nome = input.nextLine();
-                System.out.print(" ID: ");
-                id = input.nextInt();
-                System.out.print(" Número do cartão de crédito: ");
-                credit = input.nextInt();
-                cliente = new Passenger(nome, id, credit);
-                System.out.println("\nOnde o passageiro deseja viajar?\n1 - Primeira Classe.\n2 - Classe Econômica.");
-                opt = input.nextInt();
+                System.out.print("Identifique-se para continuar\n\tnome: ");
+                String name = input.next();
+                Passenger passenger;
+                passenger = flight.getFirstClass().getPassenger(name ,"name");
+                if(passenger==null){ passenger = flight.getEconomyClass().getPassenger(name , "name");}
 
-                if(opt==1){
+                if(passenger != null){ // Se já existe um passageiro cadastrado com este nome
                     do{
+                        System.out.println(passenger.toString());
+                        System.out.println("| 1-Confirmar compra\t| 2-Mudar Assento\t| 3-Cancelar Voo\t| 0 - SAIR");
+                        opt = input.nextInt();
+                        if(opt == 0){
+                            break;
+                        }else if(opt == 1){
+                            System.out.println("========================================================================\n\t\t\tCARTÃO DE EMBARQUE\n========================================================================");
+                            System.out.println();
+                            System.out.println(flight.toString());
+                            System.out.println();
+                            System.out.println(passenger.toString());
+                            System.out.println();
+                            System.out.println("========================================================================\n\t\t\tBOA VIAGEM\n========================================================================");
+                            break;
+                        }else if(opt == 2){
+                            //modificar assento do passageiro
+                            String sit = passenger.getSit();
+                            Class classe = passenger.getClasse();
+                            classe.removePassenger(sit);
+                            boolean flag;
 
-                        System.out.println("Em qual poltrona deseja sentar?\n");
-                        fClass.print();
-                        System.out.println();
-                        sit = input.next();
-                        x = fClass.getX(sit);
-                        //System.out.println(x);
-                        y = fClass.getY(sit);
-                        //System.out.println(y);
+                            do{
+                                flag = chooseSit(flight , passenger);
+                            }while(flag!=true);
 
-                        /* verify if "sit" is a valid sit and if it's empty */
-                        flag = fClass.sitIsEmpty(x, y);
+                        }else if(opt == 3){
 
-                        //System.out.println(flag);
-                        if(flag == false) System.out.println("Assento ocupado ou inexistente.");
+                            String sit = passenger.getSit();
+                            Class classe = passenger.getClasse();
+                            classe.removePassenger(sit);
 
-                    }while(flag != true);
-                    fClass.sitMap[x][y] = 1;
-                    cliente.setSit(sit);
-                    fClass.addPassenger(cliente);
-                    System.out.println("Passageiro adicionado com sucesso!");
-                }else if(opt == 2){
+                            System.out.println("Voo Cancelado");
 
+                            break;
+
+                        }else{
+                            System.out.println("Entrada inválida");
+                        }
+                    }while(true);
+                }else{// Se não existe um passageiro cadastrado com esse nome (criar novo cadastro)
+                    opt = 0;
                     do{
-                        System.out.println("Em qual poltrona deseja sentar?\n");
-                        fClass.print();
-                        System.out.println();
-                        sit = input.next();
-                        x = eClass.getX(sit);
-                        y = eClass.getY(sit);
-                        /* verify if "sit" is a valid sit and if it's empty */
-                        flag = eClass.sitIsEmpty(/*eClass.sitMap*/ x, y);
-                        if(flag == false) System.out.println("Assento ocupado ou inexistente.");
-                    }while(flag == true);
-                    eClass.sitMap[x][y] = 1;
-                    cliente.setSit(sit);
-                    eClass.addPassenger(cliente);
-                    System.out.println("Passageiro adicionado com sucesso!");
+                        if(opt == 2){
+                            name = input.next();
+                        }
+
+                        System.out.print("\n\tID: ");
+                        int id = input.nextInt();
+                        System.out.print("\n\tNúmero do cartão de crédito: ");
+                        int credit = input.nextInt();
+                        passenger = new Passenger(name, id, credit);
+
+                        chooseSit(flight , passenger);
+
+                        System.out.println("| 1 - Confirmar compra\t| 2 - Adicionar outro passageiro\t| 0 - sair");
+                        opt = input.nextInt();
+                        if(opt == 1){
+                            System.out.println("========================================================================\n\t\t\tCARTÃO DE EMBARQUE\n========================================================================");
+                            System.out.println();
+                            System.out.println(flight.toString());
+                            System.out.println();
+                            System.out.println(passenger.toString());
+                            System.out.println();
+                            System.out.println("========================================================================\n\t\t\tBOA VIAGEM\n========================================================================");
+                            break;
+                        }
+                        else if(opt == 0){
+                            break;
+                        }
+
+                    }while(true);
                 }
-                System.out.println("Deseja adicionar outro passageiro?\n 1 - Sim.\n 2 - Não.");
-                parar = input.nextInt();
-            }while(parar == 1);
-        }while(sair != 0);
+            }
+            else{
+                System.out.println("Entrada Inválida");
+            }
+        }while(true);
     }
 }

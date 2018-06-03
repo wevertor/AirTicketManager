@@ -1,10 +1,10 @@
 public class Fly{
-    private FirstClass firstClass = new FirstClass();
-    private EconomyClass economyClass = new EconomyClass();
+    private FirstClass firstClass ;
+    private EconomyClass economyClass;
     private String company, date, time, gate, number, from, to;
     private Double price;
 
-    public Fly(String company, String date, String time, String gate, String number, String from, String to, Double price){
+    public Fly(String company, String date, String time, String number, String gate, String from, String to, Double price){
         this.company = company;
         this.date = date;
         this.time = time;
@@ -13,6 +13,15 @@ public class Fly{
         this.from = from;
         this.to = to;
         this.price = price;
+        this.firstClass =  new FirstClass();
+        this.economyClass = new EconomyClass();
+    }
+
+    void print(){
+        System.out.println("================ Primeira Classe ================");
+        firstClass.print();
+        System.out.println("================ Classe Econômica ================");
+        economyClass.print();
     }
 
     FirstClass getFirstClass(){
@@ -45,6 +54,10 @@ public class Fly{
 
     String getFrom(){
         return this.from;
+    }
+
+    public String toString(){
+        return date + " "+ time + "\t\tGATE :" +gate + "\t\tFlight nº: " + number + "\n\nFrom\t: "+from +"\t\t\t\t\t$"+price + "\n\nTo\t: " +to;
     }
 
     String getTo(){
