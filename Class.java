@@ -51,7 +51,6 @@ public class Class {
         this.passengers.add(passenger);
     }
 
-<<<<<<< HEAD
     Passenger getPassenger(String sit){
         Iterator<Passenger> it = this.passengers.iterator();
         while(it.hasNext()){
@@ -61,10 +60,4 @@ public class Class {
         }
         return null;
     }
-=======
-    Passenger getPassenger(String key){
-        return this.passengers.get(key);
-    }       
-    
->>>>>>> aa710eea8350a02047391471e421165185c94458
 }
