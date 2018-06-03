@@ -18,4 +18,21 @@ public class EconomyClass extends Class{
         }
         return false;
     }
+
+    void print(){
+        System.out.println("|Economy Class|");
+        System.out.println("   A B C D E F");
+        for(int i = 0; i<15;i++){
+            if(i+1<10){
+                System.out.printf("0%d ", i+1);
+            }
+            else{
+                System.out.printf("%d ", i+1);
+            }
+            for(int j = 0; j<6 ;j++){
+                System.out.printf("%d ", sitMap[i][j]); 
+            }
+            System.out.printf("\n");
+        }
+    }
 }

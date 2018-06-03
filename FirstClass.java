@@ -19,4 +19,15 @@ public class FirstClass extends Class{
         return false;
     }
 
+    void print(){
+        System.out.println("|First Class|");
+        System.out.println("  A B C D E F"); 
+        for(int i = 0; i<5; i++){
+            System.out.printf("%d ", i+1);
+            for(int j = 0 ; j<6 ; j++){
+                System.out.printf("%d ", sitMap[i][j]);
+            }
+            System.out.printf("\n");
+        }
+    }
 }
