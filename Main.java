@@ -15,9 +15,9 @@ class Main {
         FirstClass fClass /*= new FirstClass()*/;
         EconomyClass eClass /*= new EconomyClass()*/;
 
-        Fly teresina = new Fly("GOL", formatter.format(date), "14:45", "1", "A", "São Luís", "Teresina");
-        Fly saopaulo = new Fly("LATAM", formatter.format(date), "17:30", "2", "E", "São Luís", "São Paulo");
-        Fly londres = new Fly("AZUL", formatter.format(date), "04:30", "3", "D", "São Luís", "Londres");
+        Fly teresina = new Fly("GOL", formatter.format(date), "14:45", "1", "A", "São Luís", "Teresina", 450.00);
+        Fly saopaulo = new Fly("LATAM", formatter.format(date), "17:30", "2", "E", "São Luís", "São Paulo" , 450.00);
+        Fly londres = new Fly("AZUL", formatter.format(date), "04:30", "3", "D", "São Luís", "Londres", 450.00);
 
         do{
             System.out.println("Escolha um dos voos para cadastrar um passageiro: (Insira 0 para sair)");
@@ -48,7 +48,7 @@ class Main {
 
             do{
                 System.out.print("Insira os dados do passageiro.\n Nome: ");
-                nome = input.next();
+                nome = input.nextLine();
                 System.out.print(" ID: ");
                 id = input.nextInt();
                 System.out.print(" Número do cartão de crédito: ");
