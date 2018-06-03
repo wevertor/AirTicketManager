@@ -19,7 +19,7 @@ public class Class {
         buffer = ref.toCharArray();
         buffer[ref.length()-1] = '0'; //change the letter to 0
         value = String.valueOf(buffer); //convert back to String
-        return Integer.parseInt(value)/10; //convert the String to int removing the 0
+        return (Integer.parseInt(value)/10)-1; //convert the String to int removing the 0
     }
 
     /* method for convert the position in row to position in array */

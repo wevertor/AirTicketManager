@@ -1,9 +1,9 @@
 public class Fly{
     FirstClass firstClass = new FirstClass();
     EconomyClass economyClass = new EconomyClass();
-    private String company, date, time, gate, number, from, to;
+    private String company, date, time, gate, number, from, to, price;
 
-    public Fly(String company, String date, String time, String gate, String number, String from, String to){
+    public Fly(String company, String date, String time, String gate, String number, String from, String to, String price){
         this.company = company;
         this.date = date;
         this.time = time;
@@ -11,6 +11,7 @@ public class Fly{
         this.number = number;
         this.from = from;
         this.to = to;
+        this.price = price;
     }
 
     FirstClass getFirstClass(){

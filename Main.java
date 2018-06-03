@@ -60,7 +60,9 @@ class Main {
                 if(opt==1){
                     do{
 
-                        System.out.println("Em qual poltrona deseja sentar?");
+                        System.out.println("Em qual poltrona deseja sentar?\n");
+                        fClass.print();
+                        System.out.println();
                         sit = input.next();
                         x = fClass.getX(sit);
                         //System.out.println(x);
@@ -81,7 +83,9 @@ class Main {
                 }else if(opt == 2){
 
                     do{
-                        System.out.println("Em qual poltrona deseja sentar?");
+                        System.out.println("Em qual poltrona deseja sentar?\n");
+                        fClass.print();
+                        System.out.println();
                         sit = input.next();
                         x = eClass.getX(sit);
                         y = eClass.getY(sit);
