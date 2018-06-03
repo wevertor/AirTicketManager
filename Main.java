@@ -42,6 +42,7 @@ class Main {
                 eClass = londres.getEconomyClass();
             }
             else{
+                System.out.println("Entrada Inválida.");
                 break;
             }
 
@@ -74,7 +75,8 @@ class Main {
 
                     }while(flag != true);
                     fClass.sitMap[x][y] = 1;
-                    fClass.addPassenger(sit, cliente);
+                    cliente.setSit(sit);
+                    fClass.addPassenger(cliente);
                     System.out.println("Passageiro adicionado com sucesso!");
                 }else if(opt == 2){
 
@@ -88,7 +90,8 @@ class Main {
                         if(flag == false) System.out.println("Assento ocupado ou inexistente.");
                     }while(flag == true);
                     eClass.sitMap[x][y] = 1;
-                    eClass.addPassenger(sit, cliente);
+                    cliente.setSit(sit);
+                    eClass.addPassenger(cliente);
                     System.out.println("Passageiro adicionado com sucesso!");
                 }
                 System.out.println("Deseja adicionar outro passageiro?\n 1 - Sim.\n 2 - Não.");

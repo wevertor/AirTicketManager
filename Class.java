@@ -3,7 +3,7 @@ import java.util.*;
 public class Class {
     protected int [][] sitMap;
 
-    private HashMap<String, Passenger> passengers = new HashMap<String, Passenger>();
+    private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
 
     int getY(String ref){
         char[] buffer;
@@ -47,11 +47,17 @@ public class Class {
         }
     }
 
-    void addPassenger(String key, Passenger passenger){
-        this.passengers.put(key, passenger);
+    void addPassenger(Passenger passenger){
+        this.passengers.add(passenger);
     }
 
-    Passenger getPassenger(String key){
-        return this.passengers.get(key);
+    Passenger getPassenger(String sit){
+        Iterator<Passenger> it = this.passengers.iterator();
+        while(it.hasNext()){
+            if (it.next().getSit().equals(sit)) {
+                return it.next();
+            }
+        }
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 public class Passenger{
     private long id, credit;
-    private String name;
+    private String name, sit;
 
     Passenger(String name, long id, long credit){
         this.id = id;
@@ -18,5 +18,13 @@ public class Passenger{
 
     String getName(){
         return this.name;
+    }
+
+    String getSit(){
+        return this.sit;
+    }
+
+    void setSit(String sit){
+        this.sit = sit;
     }
 }
