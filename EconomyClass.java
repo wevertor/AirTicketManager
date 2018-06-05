@@ -20,7 +20,6 @@ public class EconomyClass extends Class{
     }
 
     void print(){
-        System.out.println("|Economy Class|");
         System.out.println("   A B C D E F");
         for(int i = 0; i<15;i++){
             if(i+1<10){

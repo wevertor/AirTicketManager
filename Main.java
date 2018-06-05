@@ -13,10 +13,13 @@ class Main {
         int opt = input.nextInt();
         int x , y;
         String sit;
+        FirstClass fClass;
+        EconomyClass eClass;
+        boolean flag;
 
         if(opt==1){
 
-            FirstClass fClass = flight.getFirstClass();
+            fClass = flight.getFirstClass();
 
             do{
 
@@ -28,7 +31,7 @@ class Main {
                 y = fClass.getY(sit);
 
                 /* verify if "sit" is a valid sit and if it's empty */
-                boolean flag = fClass.sitIsEmpty(x, y);
+                flag = fClass.sitIsEmpty(x, y);
 
                 if(flag) break;
 
@@ -44,7 +47,7 @@ class Main {
 
         }else if(opt == 2){
 
-            EconomyClass eClass = flight.getEconomyClass();
+            eClass = flight.getEconomyClass();
 
             do{
 
@@ -57,13 +60,13 @@ class Main {
                 y = eClass.getY(sit);
 
                 /* verify if "sit" is a valid sit and if it's empty */
-                boolean flag = eClass.sitIsEmpty(x, y);
+                flag = eClass.sitIsEmpty(x, y);
 
-                if(flag) break;
+                if (flag == true) break;
 
                 System.out.println("Assento ocupado ou inexistente.");
 
-            }while(true);
+            }while(flag!=true);
 
             eClass.sitMap[x][y] = 1;
             passenger.setSit(sit);
@@ -78,6 +81,7 @@ class Main {
         int opt;
         Scanner input = new Scanner(System.in);
         Date date = new Date();
+        Passenger passenger;
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
         Fly teresina = new Fly("GOL", formatter.format(date), "14:45", "1", "A", "São Luís", "Teresina", 450.00);
@@ -109,7 +113,6 @@ class Main {
 
                 System.out.print("Identifique-se para continuar\n\tnome: ");
                 String name = input.next();
-                Passenger passenger;
                 passenger = flight.getFirstClass().getPassenger(name ,"name");
                 if(passenger==null){ passenger = flight.getEconomyClass().getPassenger(name , "name");}
 

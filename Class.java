@@ -54,7 +54,7 @@ public class Class {
 
     void removePassenger(String str){
         for(int i = 0 ; i < passengers.size();i++){
-            if(passengers.get(i).getSit().equals(str)){
+             if(passengers.get(i).getSit().equals(str)){
                 sitMap[getX(str)][getY(str)] = 0;
                 passengers.remove(i);
             }

@@ -20,7 +20,6 @@ public class FirstClass extends Class{
     }
 
     void print(){
-        System.out.println("|First Class|");
         System.out.println("  A B C D E F");
         for(int i = 0; i<5; i++){
             System.out.printf("%d ", i+1);
