@@ -1,9 +1,9 @@
 import java.util.*;
 
 public class Class {
-    protected int [][] sitMap;
+    int [][] sitMap;
 
-    private HashMap<String, Passenger> passengers = new HashMap<String, Passenger>();
+    private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
 
     int getY(String ref){
         char[] buffer;
@@ -12,14 +12,14 @@ public class Class {
         return positionInArray(buffer[ref.length()-1]); //get the letter from the array
     }
 
-     int getX(String ref){
+    int getX(String ref){
         char[] buffer;
         String value;
 
         buffer = ref.toCharArray();
         buffer[ref.length()-1] = '0'; //change the letter to 0
         value = String.valueOf(buffer); //convert back to String
-        return Integer.parseInt(value)/10; //convert the String to int removing the 0
+        return (Integer.parseInt(value)/10)-1; //convert the String to int removing the 0
     }
 
     /* method for convert the position in row to position in array */
@@ -47,11 +47,46 @@ public class Class {
         }
     }
 
-    void addPassenger(String key, Passenger passenger){
-        this.passengers.put(key, passenger);
+    void addPassenger(Passenger passenger){
+        this.passengers.add(passenger);
+        this.sitMap[getX(passenger.getSit())][getY(passenger.getSit())] = 1;
     }
 
-    Passenger getPassenger(String key){
-        return this.passengers.get(key);
+    void removePassenger(String str){
+        for(int i = 0 ; i < passengers.size();i++){
+             if(passengers.get(i).getSit().equals(str)){
+                sitMap[getX(str)][getY(str)] = 0;
+                passengers.remove(i);
+            }
+        }
     }
+
+    Passenger getPassenger(String str , String searchType){
+        Iterator<Passenger> it = this.passengers.iterator();
+
+        if(searchType.equals("sit")){
+
+            while(it.hasNext()){
+                Passenger temp = it.next();
+
+                if (temp.getSit().equals(str)) {
+                    return temp;
+                }
+            }
+
+        }else if(searchType.equals("name")){
+
+            while(it.hasNext()){
+                Passenger temp = it.next();
+
+                if (temp.getName().equals(str)) {
+                    return temp;
+                }
+            }
+
+        }
+        return null;
+    }
+
+    void print(){}
 }
