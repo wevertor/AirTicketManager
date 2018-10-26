@@ -9,7 +9,7 @@ class Main {
 
     static boolean chooseSit(Fly flight , Passenger passenger){
 
-        System.out.println("\nOnde o passageiro deseja viajar?\n1 - Primeira Classe.\n2 - Classe Econômica.");
+        System.out.println("\nDeseja fazer a viagem em qual classe?\n1 - Primeira Classe.\n2 - Classe Econômica.");
         int opt = input.nextInt();
         int x , y;
         String sit;
@@ -23,7 +23,7 @@ class Main {
 
             do{
 
-                System.out.println("Em qual poltrona deseja sentar?\n");
+                System.out.println("Onde gostaria de sentar?\n");
                 fClass.print();
 
                 sit = input.next();
